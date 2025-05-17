@@ -455,7 +455,7 @@ class CopilotThread(threading.Thread):
 
     beatmap_path = './tmp_beatmap'
     
-    with open(beatmap_path, 'w') as f:
+    with open(beatmap_path, 'w', encoding="utf8") as f:
        f.write(request.beatmap)
 
     args = self.args
@@ -463,7 +463,9 @@ class CopilotThread(threading.Thread):
     args.add_to_beatmap = True
     args.gamemode = 0
     args.beatmap_path = beatmap_path
-    args.refine_iters = 4
+    args.year = 2023
+    args.descriptors = ["clean", "simple"]
+    args.difficulty = 6
 
     args.start_time = request.start_time
     args.end_time = request.end_time
@@ -489,7 +491,7 @@ class CopilotThread(threading.Thread):
         refine_model=self.refine_model,
     )
 
-    print({ "result": result, "output_path": output_path })
+    print("finished")
 
     return CopilotResult(objects=result)
         

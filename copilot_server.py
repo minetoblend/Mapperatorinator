@@ -45,6 +45,6 @@ async def copilot(request: CopilotRequest):
 
             thread.state = ThreadState(status=ThreadStatus.IDLE)
 
-            return { "success": True, "result": result }
+            return { "success": True, "result": result.objects }
 
         await asyncio.sleep(0.2)
